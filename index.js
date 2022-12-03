@@ -59,7 +59,7 @@ app.get("/:shortUrl", async (req, res) => {
     .collection("urls")
     .findOne({ short: short });
   if (found) {
-    res.redirect(`${found.full}`);
+    res.redirect(`${found.full.lourl}`);
     await client
       .db("UrlShortner")
       .collection("urls")
