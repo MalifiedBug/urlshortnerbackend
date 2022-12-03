@@ -22,12 +22,7 @@ async function MongoConnect() {
 
 const client = await MongoConnect();
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+app.use(cors())
 
 app.get("/", function (request, response) {
   response.send("🙋‍♂️ URL shortener");
