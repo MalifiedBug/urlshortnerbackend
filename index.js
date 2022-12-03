@@ -34,10 +34,11 @@ app.get("/", function (request, response) {
 });
 
 app.post("/short", async (req, res) => {
+  const full = req.body.full;
   const found = await client
     .db("UrlShortner")
     .collection("urls")
-    .findOne({ full: req.body.full });
+    .findOne({ full: full });
   if (found) {
     res.send(found);
   } else {
@@ -47,7 +48,7 @@ app.post("/short", async (req, res) => {
       .db("UrlShortner")
       .collection("urls")
       .insertOne({ full: req.body.full, short: short, count: 0 });
-    res.send(insert,short);
+    res.send({insert:insert,short:short,full:full,count:0});
   }
 });
 
